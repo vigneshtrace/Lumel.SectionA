@@ -31,28 +31,4 @@
         maxCount = Math.Max(maxCount,count);
         return count;
     }
-    [Obsolete]
-    private static int FindMaximumPossibleInterval(List<(int, int)> intervals)
-    {
-        intervals = intervals.OrderBy(x => x.Item1).ThenBy(x=>x.Item2).ToList();
-        int maxCount = 0;
-        for (int i = 0; i < intervals.Count; i++)
-        {
-            var startTime = intervals[i].Item1;var endTime = intervals[i].Item2;
-            int count = 1;
-            for (int j = i + 1; j < intervals.Count; j++)
-            {
-                var currentStartTime = intervals[j].Item1;
-                var currentEndTime = intervals[j].Item2;
-                if (currentStartTime >= endTime)
-                {
-                    count++; 
-                    startTime = currentStartTime;
-                    endTime = currentEndTime;
-                }
-            }
-            maxCount = Math.Max(maxCount, count);
-        }
-        return maxCount;
-    }
 }
